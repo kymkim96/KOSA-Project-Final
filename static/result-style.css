@@ -1,0 +1,145 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica;
+    font-family: "Open Sans", "Poppins", sans-serif;
+}
+
+a {
+    text-decoration: none;
+    display: inline-block;
+    color: rgba(0, 0, 0, 0.54);
+    outline: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+
+i {
+    font-size: 1.3rem;
+}
+
+i, img, button {
+    cursor: pointer;
+}
+
+.TMF {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+.TMF .TMF-header {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 20px;
+}
+.TMF .TMF-header a {
+    color: rgba(0, 0, 0, 0.871);
+    font-size: 13px;
+    margin-right: 15px;
+    line-height: 24px;
+}
+.TMF .TMF-header a:hover {
+    opacity: 0.85;
+}
+.TMF .TMF-header i, .TMF .TMF-header img {
+    vertical-align: middle;
+}
+.TMF .TMF-header img {
+    width: 60px;
+    display: block;
+}
+.TMF .TMF-header form {
+    width: 720px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.TMF .TMF-header form .search {
+    width: 80%;
+    position: relative;
+}
+.TMF .TMF-header form .search input {
+    width: 100%;
+    padding: 0.8em 3em;
+    border-radius: 30px;
+    margin-left:15px;
+    outline: none;
+    border: 1px solid #e6e5e5;
+    transition: all 0.3s ease;
+    background-color: transparent;
+    color: rgba(0, 0, 0, 0.871);
+    font-size: 16px;
+    word-wrap: break-word;
+}
+.TMF .TMF-header form .search input:hover {
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1);
+    border-color: transparent;
+}
+.TMF .TMF-header form .search .fa-search {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: rgba(0, 0, 0, 0.54);
+}
+.TMF .TMF-header form .search .fa-search {
+    left: 40px;
+}
+
+.TMF .TMF-body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: -100px;
+}
+
+.TMF .TMF-body .contents table {
+    margin: 15px;
+    border: solid;
+    width: 500px;
+}
+
+.TMF .TMF-footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: #f1f1f1;
+    text-transform: capitalize;
+}
+.TMF .TMF-footer a {
+    font-size: 14px;
+    line-height: 40px;
+    padding-left: 27px;
+}
+.TMF .TMF-footer hr {
+    color: #f1f1f13a;
+}
+.TMF .TMF-footer .footer-down {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.TMF .TMF-footer .footer-down .footer-down-right {
+    padding-right: 27px;
+}
+
+@media screen and (max-width: 600px) {
+    .TMF-body form {
+        max-width: 350px;
+    }
+}
+
+/*# sourceMappingURL=result-style.css.map */
