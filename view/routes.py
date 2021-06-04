@@ -5,26 +5,21 @@ import pandas as pd
 from util.komoran_preprocessing import koma_file, filter_stopword
 from util.convert_tensor import convert_sparse_matrix_to_sparse_tensor
 from util.categories import categories
+from util.stopwords import get_stopwords
 import tensorflow as tf
 
 
 @app.route('/search')
 def search():
     title = request.args.get("title")
-    check_tf_idf, stopwords = None, None
+    check_tf_idf = None
 
     # 임베딩 모델
     with open("model/bc_0601-06_49_TfidfVectorizer(max_features=10000).pickle", 'rb') as f:
         check_tf_idf = pd.read_pickle(f)
 
     # 불용어 처리 csv
-    with open("model/stopword_region.csv", 'rb') as f:
-        stopwords = pd.read_csv(
-            "https://raw.githubusercontent.com/yoonkt200/FastCampusDataset/master/korean_stopwords.txt").values.tolist()
-        stopword_region = pd.read_csv(f)
-        stopword_region = stopword_region.si[:, np.newaxis].tolist()
-        stopwords = stopwords + stopword_region
-        stopwords = sum(stopwords, [])
+    stopwords = get_stopwords()
 
     # komoran 형태소 분석 및 불용어 처리
     df = pd.DataFrame({'제목': [title]})
@@ -50,6 +45,6 @@ def search():
         result_dict[cat] = result[0][i]
     result_dict = {k: float(v) for k, v in result_dict.items()}
 
-    print(result_dict)
+    # print(result_dict)
 
     return jsonify(result_dict)

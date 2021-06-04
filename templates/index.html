@@ -21,10 +21,8 @@
 <body>
 <div class="TMF">
     <div class="TMF-body">
-        <img src="/static/images/logo-02.png">
-
+        <img src="{{ url_for('static', filename='images/logo-3.png') }}" alt="Too">
         <form id="form_disabled" onsubmit="return false;">
-
             <div class="search">
                 <input id="title" type="text" name="content_name" placeholder="검색하고 싶은 콘텐츠의 이름을 입력하세요"/>
                 <i class="fa fa-search"></i>
