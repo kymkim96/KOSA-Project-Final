@@ -28,7 +28,8 @@ i, img, button {
 }
 
 .TMF {
-  height: 1000vh;
+  height: 115vh;
+  margin-top: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
