@@ -1,17 +1,21 @@
+import pandas as pd
+import tensorflow as tf
 from flask import current_app as app
 from flask import request, jsonify
-import numpy as np
-import pandas as pd
-from util.komoran_preprocessing import koma_file, filter_stopword
-from util.convert_tensor import convert_sparse_matrix_to_sparse_tensor
+
 from util.categories import categories
+from util.convert_tensor import convert_sparse_matrix_to_sparse_tensor
+from util.komoran_preprocessing import koma_file, filter_stopword
 from util.stopwords import get_stopwords
-import tensorflow as tf
+
+import requests
 
 
 @app.route('/search')
 def search():
     title = request.args.get("title")
+    if not title:
+        return
     check_tf_idf = None
 
     # 임베딩 모델
@@ -48,3 +52,9 @@ def search():
     # print(result_dict)
 
     return jsonify(result_dict)
+
+
+@app.route('/recommend')
+def recommend():
+    res = requests.get("http://localhost:8080/pages?category=건강")
+    print(res.json())

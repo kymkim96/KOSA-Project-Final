@@ -15,4 +15,4 @@ with app.app_context():
 
 
 if __name__ == '__main__':
-    app.run(host="localhost", port=8000, debug=True)
+    app.run(host="192.168.2.22", port=8000, debug=True)

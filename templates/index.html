@@ -21,7 +21,8 @@
 <body>
 <div class="TMF">
     <div class="TMF-body">
-        <img src="{{ url_for('static', filename='images/logo-3.png') }}" alt="Too">
+        <img id="main-logo" src="{{ url_for('static', filename='images/logo-02.png') }}"  width="500" >
+        <div>dhifd</div>
         <form id="form_disabled" onsubmit="return false;">
             <div class="search">
                 <input id="title" type="text" name="content_name" placeholder="검색하고 싶은 콘텐츠의 이름을 입력하세요"/>
@@ -45,6 +46,10 @@
                                 title: event.target.value,
                             },
                             success: (data) => {
+                                if (!data) {
+                                    return
+                                }
+
                                 const categories = data
                                 let ranking = []
                                 const values = []
