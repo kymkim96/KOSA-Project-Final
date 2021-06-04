@@ -41,7 +41,7 @@
                         $("#show_title").text(event.target.value)
 
                         $.ajax({
-                            url: 'http://192.168.2.22:8000/search',
+                            url: 'http://localhost:8000/search',
                             method: 'get',
                             data: {
                                 title: event.target.value,
@@ -78,8 +78,8 @@
                                     type: 'pie'
                                 }]
                                 const layout = [{
-                                    height: 250,
-                                    width: 600
+                                    height: 300,
+                                    width: 1000
                                 }]
                                 Plotly.newPlot('plotly-view', plotly_data, layout)
                                 console.log(ranking)
@@ -90,7 +90,7 @@
                                 $("#data-table").addClass('visible')
                                 $("#first_category").text(ranking[0].name)
                                 $("#first_category_sub").text(ranking[0].name)
-                                $("#first_percentage").text((Math.floor(ranking[0].value*1000)/1000)*100)
+                                $("#first_percentage").text((Math.floor(ranking[0].value*1000)/1000*100).toFixed(1))
 
                                 $("#second_category").text(ranking[1].name)
                                 $("#second_category_sub").text(ranking[1].name)
@@ -121,7 +121,7 @@
               <span class="visually-hidden">Loading...</span>
             </div>
         </form>
-        <div class="d-flex">
+        <div class="d-flex" style="width: 1500px; height: 500px">
             <div class="container-md mt-2 invisible" id="data-table">
                 <div class="row" style="height: 50px">
                     <div class="col-lg-2 border-end d-flex justify-content-center align-items-center">
