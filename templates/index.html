@@ -21,7 +21,7 @@
 <body>
 <div class="TMF">
     <div class="TMF-body">
-        <img src="{{ url_for('static', filename='images/logo-3.png') }}" alt="Too">
+        <img src="/static/images/logo-02.png">
 
         <form id="form_disabled" onsubmit="return false;">
 
@@ -41,7 +41,7 @@
                         $("#show_title").text(event.target.value)
 
                         $.ajax({
-                            url: 'http://localhost:8000/search',
+                            url: 'http://192.168.2.22:8000/search',
                             method: 'get',
                             data: {
                                 title: event.target.value,
