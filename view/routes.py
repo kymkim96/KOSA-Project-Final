@@ -56,5 +56,13 @@ def search():
 
 @app.route('/recommend')
 def recommend():
+    title = request.args.get('title')
+    category = request.args.get('category')
     res = requests.get("http://localhost:8080/pages?category=건강")
     print(res.json())
+
+    # DB 데이터를 데이터 프레임으로 변환
+    target_df = pd.DataFrame(data=res.json())
+    source_df = pd.DataFrame({'제목': [title]})
+
+    return jsonify(res.json())
