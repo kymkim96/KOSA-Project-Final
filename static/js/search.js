@@ -1,12 +1,23 @@
 $(() => {
     $("#title").on('keyup', (event) => {
         if(event.keyCode === 13) {
+            // 빈 내용 입력 시 차단
+            if (!event.target.value) {
+                return
+            }
+
+            // 스피너 출력 및 데이터 영역 감추기
             $("#data-table").removeClass('visible')
             $("#data-table").addClass('invisible')
             $("#spin").removeClass('invisible')
             $("#spin").addClass('visible')
             $("#show_title").text(event.target.value)
 
+            /**
+             * http://localhost:8000/search
+             * - params
+             * title: 입력한 문서 제목
+             */
             $.ajax({
                 url: '/search',
                 method: 'get',
@@ -69,6 +80,7 @@ $(() => {
                     }]
                     Plotly.newPlot('plotly-view', plotly_data, layout)
 
+                    // 데이터 영역 출력 및 카테고리 영역 렌더링
                     $("#spin").removeClass('visible')
                     $("#spin").addClass('invisible')
                     $("#data-table").removeClass('invisible')

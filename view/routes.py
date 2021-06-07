@@ -10,17 +10,22 @@ from util.stopwords import get_stopwords
 
 import requests
 
+check_tf_idf, check_model = None, None
+
 
 @app.route('/search')
 def search():
     title = request.args.get("title")
     if not title:
         return
-    check_tf_idf = None
+    # check_tf_idf = None
+    global check_tf_idf
+    global check_model
 
     # 임베딩 모델
-    with open("model/bc_0601-06_49_TfidfVectorizer(max_features=10000).pickle", 'rb') as f:
-        check_tf_idf = pd.read_pickle(f)
+    if not check_tf_idf:
+        with open("model/bc_0601-06_49_TfidfVectorizer(max_features=10000).pickle", 'rb') as f:
+            check_tf_idf = pd.read_pickle(f)
 
     # 불용어 처리 csv
     stopwords = get_stopwords()
@@ -31,10 +36,11 @@ def search():
     check_bul_df = filter_stopword(koma_df, stopwords, col_name='제목')
     check_bul_df.reset_index(drop=True, inplace=True)
 
-
     # tf-idf 처리 및 모델 예측
     check_tf_title = check_tf_idf.transform(check_bul_df['제목'].values.astype('U'))
-    check_model = tf.keras.models.load_model("model/bc_model_TfidfVectorizer(max_features=10000)_0.973622")
+
+    if not check_model:
+        check_model = tf.keras.models.load_model("model/bc_model_TfidfVectorizer(max_features=10000)_0.973622")
     check_model.load_weights("model/bc_0601-06_49_01-0.9741.h5")
 
     sparse_tensor = convert_sparse_matrix_to_sparse_tensor(check_tf_title)

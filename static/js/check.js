@@ -1,17 +1,40 @@
 $(() => {
-    const div_box = "<div class='d-flex justify-content-center align-items-center' style='width: 812px; height: 400px;'>"
+    const div_box = "<div id='div_box' class='d-flex justify-content-center align-items-center'" +
+        " style='width: 812px; height: 400px;'>"
     const div_spinner = "<div class=\"spinner-border text-info\"" +
         " role=\"status\" id=\"spin_recommend\"" +
         " style='width: 4rem; height: 4rem;'>"
+    let plotly_temp;
 
     $("#recommend_btn").click(() => {
+        // 카테고리 선택안하고 추천 버튼을 눌렀을 시 예외처리
+        if (!$("input:radio[name='check']:checked").val()) {
+            const recommend_warning = '<div class="row ms-4 mt-2" id="recommend_warning">' +
+                            '<span class="text-danger">카테고리를 선택해주세요</span>' +
+                            '</div>'
+            $("#recommend_btn").after(recommend_warning)
+            return;
+        }
+
+        // 경고글이 표시되어 있고 올바른 입력이 들어왔을 때 예외처리
+        if ($("#recommend_warning").length) {
+            $("#recommend_warning").remove()
+        }
+
         if ($("#plotly-view").length) {
-            $("#plotly-view")
+            plotly_temp = $("#plotly-view")
+            plotly_temp
             .replaceWith(div_box + div_spinner +
                                   "<span class=\"visually-hidden\">Loading...</span>" +
                                "</div>" + "</div>")
         } else if ($("#spin_recommend").length) {
-            return
+            return;
+        } else {
+            $("#list_over").empty()
+            $("#list_over")
+                .append(div_box + div_spinner +
+                          "<span class=\"visually-hidden\">Loading...</span>" +
+                       "</div>" + "</div>")
         }
 
         $.ajax({
@@ -31,6 +54,15 @@ $(() => {
                         "</button>"
                     item_id_group.push(['item' + page['pid'], page['param1'], page['param2']])
                 }
+                const icon = '<div class="container-md">' +
+                                '<div class="row">' +
+                                    '<div class="col-md-4">' +
+                                        '<button type="button" id="back_chart" class="btn btn-dark">pie 차트로 돌아가기</button>' +
+                                    '</div>' +
+                                    '<div class="col-md-8 invisible">여백</div>' +
+                                '</div>' +
+                            '</div>'
+                $("#list_over").prepend(icon)
                 $("#spin_recommend")
                     .replaceWith("<div class='list-group'>" +
                         list_group +
@@ -58,5 +90,10 @@ $(() => {
                 }
             }
         })
+    })
+
+    $(document).on('click', '#back_chart', () => {
+        $("#list_over").empty()
+        $("#list_over").append(plotly_temp)
     })
 });
