@@ -101,16 +101,29 @@ i, img, button {
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1);
   border-color: transparent;
 }
-.TMF .TMF-body form .search .fa-search, .TMF .TMF-body form .search .fa-microphone {
+
+.TMF .TMF-body form .search div button {
+  padding: 3px;
+  border-radius: 5px;
+  outline: none;
+  border: 1px solid #e6e5e5;
+  transition: all 0.3s ease;
+  background-color: transparent;
+  color: rgba(0, 0, 0, 0.871);
+  font-size: 16px;
+  word-wrap: break-word;
+}
+
+.TMF .TMF-body form .search .fa-search, .TMF .TMF-body form .search .fa-refresh {
   position: absolute;
-  top: 50%;
+  top: 67%;
   transform: translate(-50%, -50%);
   color: rgba(0, 0, 0, 0.54);
 }
 .TMF .TMF-body form .search .fa-search {
   left: 25px;
 }
-.TMF .TMF-body form .search .fa-microphone {
+.TMF .TMF-body form .search .fa-refresh {
   right: 13px;
 }
 .TMF .TMF-body form .buttons {
