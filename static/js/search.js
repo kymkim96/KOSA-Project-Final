@@ -70,12 +70,12 @@ $(() => {
                 //                 '</div>' +
                 //             '</div>'
                 $("#spin_recommend")
-                    .replaceWith( "<div id='recomend_list'>" + '<button type="button" id="back_chart" class="btn btn-dark">' +
+                    .replaceWith( "<div>" + '<button type="button" id="back_chart" class="btn btn-dark">' +
                             'pie 차트로 돌아가기</button>' +
                             "<div class='list-group list-group-flush'>" +
                             list_group +
                             "</div>" + "</div>")
-                recommend_list = $("#recommend_list");
+                recommend_list = $("#div_box");
 
                 for (let item_id of item_id_group) {
                     $(document).on('click', '#'+item_id[0], () => {
